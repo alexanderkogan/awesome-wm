@@ -580,5 +580,23 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Setting keyboard layouts
 awful.spawn.with_shell("setxkbmap -layout 'us,de' -option 'grp:menu_toggle'")
 
--- Autostart
-awful.spawn.with_shell("~/.config/awesome/autostart.sh")
+-- {{{ Autostart
+-- As seen at https://github.com/2007M4N/awesome/
+
+-- Run Once Function
+function run_once(prg,arg_string,screen)
+    if not prg then
+        do return nil end
+    end
+    if not arg_string then 
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x " .. prg .. " || (" .. prg .. ")",screen)
+    else
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x " .. prg .. " || (" .. prg .. " " .. arg_string .. ")",screen)
+    end
+end
+
+-- wich Programms should be started
+run_once("xscreensaver","-no-splash -display :0")
+run_once("slack")
+-- }}}
+

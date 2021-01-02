@@ -503,7 +503,7 @@ awful.rules.rules = {
 
     -- Pin Slack to a tag
     { rule = { class = "Slack" },
-      properties = { screen = 1, tag = "1" } },
+      properties = { screen = 2, tag = "1" } },
     { rule = { name = "KeePassXC" },
       properties = { screen = 2, tag = "1", maximized_vertical = true, maximized_horizontal = true } },
     -- Stat IDEA on tag 2 TODO difference between terminal and main windows
@@ -598,5 +598,6 @@ end
 -- wich Programms should be started
 run_once("xscreensaver","-no-splash -display :0")
 run_once("slack")
+run_once("nm-applet")
 -- }}}
 
